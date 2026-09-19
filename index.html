@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="BooksDimex: una selección curada de libros para aprender, concentrarte y crecer."
+    />
+    <title>FreeBooksDim - Gratis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <script>
+      document.documentElement.dataset.theme =
+        localStorage.getItem("booksDimex-theme") ||
+        (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    </script>
+  </head>
+  <body>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="#inicio" aria-label="BooksDimex, inicio">
+        <img class="brand-logo" src="favicon.svg" alt="" aria-hidden="true" />
+        <span>Books<span class="brand-accent">Dimex</span></span>
+      </a>
+
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false">
+        <span class="theme-icon theme-icon-sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.72 5.28l-1.42 1.42M6.7 17.3l-1.42 1.42M18.72 18.72l-1.42-1.42M6.7 6.7 5.28 5.28" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="theme-icon theme-icon-moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20.25 15.62A8.5 8.5 0 0 1 8.38 3.75 8.5 8.5 0 1 0 20.25 15.62Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="theme-label">Modo oscuro</span>
+      </button>
+    </header>
+
+    <main id="inicio">
+      <section class="hero shell" aria-labelledby="hero-title">
+        <div>
+          <h1 id="hero-title">Libros <em>gratis</em> para crecimiento profesional</h1>
+          <p class="hero-description">
+            Una selección breve de libros para pensar mejor, trabajar con intención y construir una vida más consciente.
+          </p>
+        </div>
+        <div class="hero-aside" aria-label="Resumen de la biblioteca">
+          <div class="orbit orbit-large"></div>
+          <div class="orbit orbit-small"></div>
+          <div class="hero-card hero-card-back"></div>
+          <div class="hero-card hero-card-front" aria-label="Portada destacada"></div>
+        </div>
+      </section>
+
+      <section class="library shell" id="catalogo" aria-labelledby="library-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow" id="library-title">Elige tu próxima lectura</p>
+          </div>
+          <p class="library-count" id="library-count">Cargando libros...</p>
+        </div>
+        <div class="books-grid" id="books-grid" aria-live="polite">
+          <div class="loading-state">Preparando tu biblioteca<span class="loading-dots">...</span></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <span>BooksDimex<span class="brand-accent">.</span></span>
+      <span>Una página, una buena idea.</span>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

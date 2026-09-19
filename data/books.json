@@ -1,0 +1,38 @@
+[
+  {
+    "titulo": "Hábitos atómicos",
+    "autor": "James Clear",
+    "enlace": "https://librerialatina.co/wp-content/uploads/2024/04/HABITOS-ATOMICOS-JAMES-CLEAR.pdf",
+    "imagen": "https://www.crisol.com.pe/media/catalog/product/9/7/9786124404245_ed3i2k7w6kjxj48o.jpg?width=700&height=1050&store=default&image-type=image"
+  },
+  {
+    "titulo": "El hombre en busca de sentido",
+    "autor": "Viktor Frankl",
+    "enlace": "https://shoa-interpelados.amia.org.ar/wp-content/uploads/2024/01/vfhbs.pdf",
+    "imagen": "https://m.media-amazon.com/images/I/41Scm4PVspL._SY445_SX342_ML2_.jpg"
+  },
+  {
+    "titulo": "Concéntrate: Deep Work",
+    "autor": "Cal Newport",
+    "enlace": "https://proassetspdlcom.cdnstatics2.com/usuaris/libros_contenido/arxius/49/48820_Centrate_Deep_Work.pdf",
+    "imagen": "https://images.cdn2.buscalibre.com/fit-in/660x660/ea/3a/ea3aa6fe667f24c9c8445bbe4bc34f2e.jpg"
+  },
+  {
+    "titulo": "La psicología del dinero",
+    "autor": "Morgan Housel",
+    "enlace": "https://proassetspdlcom.cdnstatics2.com/usuaris/libros_contenido/arxius/61/60739_La_psicologia_del_dinero.pdf",
+    "imagen": "https://m.media-amazon.com/images/I/41hxvW6nhkL._SY445_SX342_ML2_.jpg"
+  },
+  {
+    "titulo": "Meditaciones",
+    "autor": "Marco Aurelio",
+    "enlace": "https://web.seducoahuila.gob.mx/biblioweb/upload/Marco%20Aurelio-Meditaciones.pdf",
+    "imagen": "https://m.media-amazon.com/images/I/71Ky9pmtdEL._SY522_.jpg"
+  },
+  {
+    "titulo": "El programador pragmático",
+    "autor": "Andrew Hunt y David Thomas",
+    "enlace": "https://cdn.bookey.app/files/pdf/book/es/el-programador-pragm%C3%A1tico.pdf",
+    "imagen": "https://m.media-amazon.com/images/I/513vMH0-Z3L._SX342_SY445_ML2_.jpg"
+  }
+]
