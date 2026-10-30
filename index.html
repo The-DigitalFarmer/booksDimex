@@ -7,7 +7,7 @@
       name="description"
       content="BooksDimex: una selección curada de libros para aprender, concentrarte y crecer."
     />
-    <title>DimexBooks - Free</title>
+    <title>BooksDimex — Tu próxima lectura</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,14 +17,15 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="styles.css" />
     <script>
-      document.documentElement.dataset.theme =
-        localStorage.getItem("booksDimex-theme") ||
-        (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      let savedTheme;
+      try { savedTheme = localStorage.getItem("booksDimex-theme"); } catch {}
+      document.documentElement.dataset.theme = ["light", "dark"].includes(savedTheme)
+        ? savedTheme
+        : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     </script>
   </head>
   <body>
-    <div class="ambient ambient-one" aria-hidden="true"></div>
-    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <a class="skip-link" href="#catalogo">Saltar al catálogo</a>
 
     <header class="site-header">
       <a class="brand" href="#inicio" aria-label="BooksDimex, inicio">
@@ -50,30 +51,46 @@
 
     <main id="inicio">
       <section class="hero shell" aria-labelledby="hero-title">
-        <div>
-          <h1 id="hero-title">Libros <em>gratis</em> para crecimiento profesional</h1>
+        <div class="hero-copy">
+          <p class="eyebrow">Lecturas para seguir creciendo</p>
+          <h1 id="hero-title">Tu próxima gran idea empieza con <em>un libro.</em></h1>
           <p class="hero-description">
-            Una selección breve de libros para pensar mejor, trabajar con intención y construir una vida más consciente.
+            Explora una selección de lecturas gratuitas para pensar mejor, trabajar con intención y descubrir nuevas perspectivas.
           </p>
+          <a class="primary-link" href="#catalogo">
+            Explorar libros
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 5v14m-6-6 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
         </div>
-        <div class="hero-aside" aria-label="Resumen de la biblioteca">
-          <div class="orbit orbit-large"></div>
-          <div class="orbit orbit-small"></div>
-          <div class="hero-card hero-card-back"></div>
-          <div class="hero-card hero-card-front" aria-label="Portada destacada"></div>
+        <div class="hero-aside" aria-hidden="true">
+          <div class="hero-backdrop"></div>
+          <img class="hero-card hero-card-back" src="https://m.media-amazon.com/images/I/41Scm4PVspL._SY445_SX342_ML2_.jpg" alt="" decoding="async" />
+          <img class="hero-card hero-card-front" src="https://www.crisol.com.pe/media/catalog/product/9/7/9786124404245_ed3i2k7w6kjxj48o.jpg?width=700&amp;height=1050&amp;store=default&amp;image-type=image" alt="" decoding="async" />
+          <span class="hero-caption">Una página, una nueva perspectiva.</span>
         </div>
       </section>
 
-      <section class="library shell" id="catalogo" aria-labelledby="library-title">
+      <section class="library shell" id="catalogo" aria-labelledby="library-title" tabindex="-1">
         <div class="section-heading">
           <div>
-            <p class="eyebrow" id="library-title">Elige tu próxima lectura</p>
+            <p class="eyebrow">La colección</p>
+            <h2 id="library-title">Elige tu próxima lectura</h2>
           </div>
-          <p class="library-count" id="library-count">Cargando libros...</p>
+          <p class="library-count" id="library-count" role="status" aria-live="polite" aria-atomic="true">Cargando libros...</p>
         </div>
-        <div class="books-grid" id="books-grid" aria-live="polite">
+        <div class="category-filters" id="category-filters" role="group" aria-label="Filtrar libros por tema">
+          <button class="filter-button" type="button" data-category="todos" aria-pressed="true" aria-controls="books-grid" disabled>Todos</button>
+          <button class="filter-button" type="button" data-category="habitos" aria-pressed="false" aria-controls="books-grid" disabled>Hábitos</button>
+          <button class="filter-button" type="button" data-category="finanzas" aria-pressed="false" aria-controls="books-grid" disabled>Finanzas</button>
+          <button class="filter-button" type="button" data-category="filosofia" aria-pressed="false" aria-controls="books-grid" disabled>Filosofía</button>
+          <button class="filter-button" type="button" data-category="tecnologia" aria-pressed="false" aria-controls="books-grid" disabled>Tecnología</button>
+        </div>
+        <div class="books-grid" id="books-grid" aria-busy="true">
           <div class="loading-state">Preparando tu biblioteca<span class="loading-dots">...</span></div>
         </div>
+        <p class="library-note">Cada portada abre una fuente externa en una pestaña nueva. La colección incluye libros, extractos y resúmenes.</p>
       </section>
     </main>
 

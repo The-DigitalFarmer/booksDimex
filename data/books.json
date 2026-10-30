@@ -2,54 +2,67 @@
   {
     "titulo": "Hábitos atómicos",
     "autor": "James Clear",
+    "categoria": "habitos",
     "enlace": "https://librerialatina.co/wp-content/uploads/2024/04/HABITOS-ATOMICOS-JAMES-CLEAR.pdf",
     "imagen": "https://www.crisol.com.pe/media/catalog/product/9/7/9786124404245_ed3i2k7w6kjxj48o.jpg?width=700&height=1050&store=default&image-type=image"
   },
   {
     "titulo": "El hombre en busca de sentido",
     "autor": "Viktor Frankl",
+    "categoria": "filosofia",
     "enlace": "https://shoa-interpelados.amia.org.ar/wp-content/uploads/2024/01/vfhbs.pdf",
     "imagen": "https://m.media-amazon.com/images/I/41Scm4PVspL._SY445_SX342_ML2_.jpg"
   },
   {
     "titulo": "Concéntrate: Deep Work",
     "autor": "Cal Newport",
+    "categoria": "habitos",
+    "recurso": "Extracto en PDF",
     "enlace": "https://proassetspdlcom.cdnstatics2.com/usuaris/libros_contenido/arxius/49/48820_Centrate_Deep_Work.pdf",
     "imagen": "https://images.cdn2.buscalibre.com/fit-in/660x660/ea/3a/ea3aa6fe667f24c9c8445bbe4bc34f2e.jpg"
   },
   {
     "titulo": "La psicología del dinero",
     "autor": "Morgan Housel",
+    "categoria": "finanzas",
+    "recurso": "Extracto en PDF",
     "enlace": "https://proassetspdlcom.cdnstatics2.com/usuaris/libros_contenido/arxius/61/60739_La_psicologia_del_dinero.pdf",
     "imagen": "https://m.media-amazon.com/images/I/41hxvW6nhkL._SY445_SX342_ML2_.jpg"
   },
   {
     "titulo": "Meditaciones",
     "autor": "Marco Aurelio",
+    "categoria": "filosofia",
     "enlace": "https://web.seducoahuila.gob.mx/biblioweb/upload/Marco%20Aurelio-Meditaciones.pdf",
     "imagen": "https://m.media-amazon.com/images/I/71Ky9pmtdEL._SY522_.jpg"
   },
   {
     "titulo": "El programador pragmático",
     "autor": "Andrew Hunt y David Thomas",
+    "categoria": "tecnologia",
+    "recurso": "Resumen en PDF",
     "enlace": "https://cdn.bookey.app/files/pdf/book/es/el-programador-pragm%C3%A1tico.pdf",
     "imagen": "https://m.media-amazon.com/images/I/513vMH0-Z3L._SX342_SY445_ML2_.jpg"
   },
   {
     "titulo": "Padre rico, Padre pobre",
     "autor": "Robert Kiyosaki y Sharon Lechter",
+    "categoria": "finanzas",
     "enlace": "https://es.slideshare.net/slideshow/padre-rico-padre-pobre-pdfdrive-pdf/252406180",
     "imagen": "https://www.crisol.com.pe/media/catalog/product/9/7/9786124247781_5elehwvnyu97zogy.jpg?width=700&height=1050&store=default&image-type=image"
   },
   {
-    "titulo": "Piense y hagase rico",
+    "titulo": "Piense y hágase rico",
     "autor": "Napoleón Hill",
+    "categoria": "finanzas",
+    "recurso": "Extracto en PDF",
     "enlace": "https://editorialtallerdelexito.com/wp-content/uploads/2019/11/Adelanto-Piense-y-hagase-rico.pdf",
     "imagen": "https://images.cdn1.buscalibre.com/fit-in/660x660/28/7e/287eadf86c36609991b364b2ad52bf11.jpg"
   },
   {
     "titulo": "Los secretos de la mente millonaria",
     "autor": "T. Harv Eker",
+    "categoria": "finanzas",
     "enlace": "https://soyemprendedor.co/wp-content/uploads/2017/01/Los-Secretos-De-La-Mente-Millonaria.pdf",
     "imagen": "https://www.crisol.com.pe/media/catalog/product/9/7/9788478086085_cvwgae1ir5soiv59.jpg?width=700&height=1050&store=default&image-type=image"
   }

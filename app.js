@@ -1,6 +1,9 @@
 const themeToggle = document.querySelector("#theme-toggle");
 const booksGrid = document.querySelector("#books-grid");
 const libraryCount = document.querySelector("#library-count");
+const categoryFilters = document.querySelector("#category-filters");
+let allBooks = [];
+let activeCategory = "todos";
 
 const bookIcon = `
   <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -18,7 +21,7 @@ function updateThemeButton() {
 themeToggle.addEventListener("click", () => {
   const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
   document.documentElement.dataset.theme = nextTheme;
-  localStorage.setItem("booksDimex-theme", nextTheme);
+  try { localStorage.setItem("booksDimex-theme", nextTheme); } catch {}
   updateThemeButton();
 });
 
@@ -29,14 +32,23 @@ function escapeHtml(value = "") {
 }
 
 function renderBooks(books) {
-  libraryCount.textContent = `${books.length} ${books.length === 1 ? "libro" : "libros"} para explorar`;
+  const categoryLabel = categoryFilters.querySelector('[aria-pressed="true"]').textContent;
+  libraryCount.textContent = activeCategory === "todos"
+    ? `${books.length} ${books.length === 1 ? "libro" : "libros"} para explorar`
+    : `${books.length} de ${allBooks.length} libros · ${categoryLabel}`;
+  if (!books.length) {
+    booksGrid.innerHTML = `<p class="empty-state">Todavía no hay libros en este tema. Explora los demás filtros.</p>`;
+    return;
+  }
   booksGrid.innerHTML = books.map((book) => {
+    const resource = book.recurso || (/\.pdf(?:$|[?#])/i.test(book.enlace) ? "PDF" : "Página externa");
+    const placeholder = `<div class="cover-placeholder" aria-hidden="true">${bookIcon}<span>Portada no disponible</span></div>`;
     const cover = book.imagen
-      ? `<img src="${escapeHtml(book.imagen)}" alt="Portada de ${escapeHtml(book.titulo)}" loading="lazy" />`
-      : `<div class="cover-placeholder">${bookIcon}<span>Portada próximamente</span></div>`;
+      ? `${placeholder}<img src="${escapeHtml(book.imagen)}" alt="Portada de ${escapeHtml(book.titulo)}" loading="lazy" decoding="async" />`
+      : placeholder;
 
     return `
-      <a class="book-card" href="${escapeHtml(book.enlace)}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${escapeHtml(book.titulo)}">
+      <a class="book-card" href="${escapeHtml(book.enlace)}" target="_blank" rel="noopener noreferrer" title="${escapeHtml(resource)} · Se abre en una pestaña nueva" aria-label="Abrir ${escapeHtml(book.titulo)}, de ${escapeHtml(book.autor)} (${escapeHtml(resource)}, nueva pestaña)">
         <div class="book-cover">${cover}</div>
         <div class="book-content">
           <h3 class="book-title">${escapeHtml(book.titulo)}</h3>
@@ -44,18 +56,45 @@ function renderBooks(books) {
         </div>
       </a>`;
   }).join("");
+  booksGrid.querySelectorAll("img").forEach((image) => {
+    image.addEventListener("error", () => image.remove(), { once: true });
+  });
 }
 
+function applyFilter() {
+  renderBooks(activeCategory === "todos"
+    ? allBooks
+    : allBooks.filter((book) => book.categoria === activeCategory));
+}
+
+categoryFilters.addEventListener("click", (event) => {
+  const button = event.target.closest("button[data-category]");
+  if (!button || button.disabled) return;
+  activeCategory = button.dataset.category;
+  categoryFilters.querySelectorAll("button").forEach((filter) => {
+    filter.setAttribute("aria-pressed", String(filter === button));
+  });
+  applyFilter();
+});
+
 async function loadBooks() {
+  booksGrid.setAttribute("aria-busy", "true");
+  libraryCount.textContent = "Cargando libros...";
+  booksGrid.innerHTML = `<div class="loading-state">Preparando tu biblioteca<span class="loading-dots">...</span></div>`;
+  categoryFilters.querySelectorAll("button").forEach((button) => { button.disabled = true; });
   try {
     const response = await fetch("data/books.json");
     if (!response.ok) throw new Error("No se pudo cargar la biblioteca");
-    const books = await response.json();
-    renderBooks(books);
+    allBooks = await response.json();
+    applyFilter();
+    categoryFilters.querySelectorAll("button").forEach((button) => { button.disabled = false; });
   } catch (error) {
     libraryCount.textContent = "No disponible";
-    booksGrid.innerHTML = `<p class="error-state">No pudimos cargar los libros. Comprueba que el sitio se esté ejecutando desde un servidor web.</p>`;
+    booksGrid.innerHTML = `<div class="error-state">No pudimos cargar la biblioteca. Vuelve a intentarlo.<button class="retry-button" id="retry-books" type="button">Reintentar</button></div>`;
+    booksGrid.querySelector("#retry-books").addEventListener("click", loadBooks);
     console.error(error);
+  } finally {
+    booksGrid.setAttribute("aria-busy", "false");
   }
 }
 
