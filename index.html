@@ -7,15 +7,12 @@
       name="description"
       content="BooksDimex: una selección curada de libros para aprender, concentrarte y crecer."
     />
-    <title>BooksDimex — Tu próxima lectura</title>
+    <meta name="color-scheme" content="light dark" />
+    <title>OrnitorBooks — Biblioteca</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..700&amp;display=swap" rel="stylesheet" />
     <script>
       let savedTheme;
       try { savedTheme = localStorage.getItem("booksDimex-theme"); } catch {}
@@ -23,62 +20,65 @@
         ? savedTheme
         : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     </script>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#catalogo">Saltar al catálogo</a>
 
     <header class="site-header">
       <a class="brand" href="#inicio" aria-label="BooksDimex, inicio">
-        <img class="brand-logo" src="favicon.svg" alt="" aria-hidden="true" />
+        <img class="brand-logo" src="favicon.svg" alt="" />
         <span>Books<span class="brand-accent">Dimex</span></span>
       </a>
 
-      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false">
-        <span class="theme-icon theme-icon-sun" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M12 2.5v2M12 19.5v2M21.5 12h-2M4.5 12h-2M18.72 5.28l-1.42 1.42M6.7 17.3l-1.42 1.42M18.72 18.72l-1.42-1.42M6.7 6.7 5.28 5.28" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <span class="theme-icon theme-icon-moon" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20.25 15.62A8.5 8.5 0 0 1 8.38 3.75 8.5 8.5 0 1 0 20.25 15.62Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-          </svg>
-        </span>
-        <span class="theme-label">Modo oscuro</span>
-      </button>
+      <div class="header-actions">
+        <a class="catalog-link" href="#catalogo">Catálogo</a>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cambiar a modo oscuro" aria-pressed="false">Modo oscuro</button>
+      </div>
     </header>
 
     <main id="inicio">
       <section class="hero shell" aria-labelledby="hero-title">
         <div class="hero-copy">
-          <p class="eyebrow">Lecturas para seguir creciendo</p>
-          <h1 id="hero-title">Tu próxima gran idea empieza con <em>un libro.</em></h1>
+          <h1 id="hero-title">Libros para seguir aprendiendo.</h1>
           <p class="hero-description">
-            Explora una selección de lecturas gratuitas para pensar mejor, trabajar con intención y descubrir nuevas perspectivas.
+            Una selección de lecturas sobre hábitos, finanzas, filosofía y tecnología.
+            Elige un tema y encuentra tu próximo libro.
           </p>
-          <a class="primary-link" href="#catalogo">
-            Explorar libros
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 5v14m-6-6 6 6 6-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
-          </a>
         </div>
-        <div class="hero-aside" aria-hidden="true">
-          <div class="hero-backdrop"></div>
-          <img class="hero-card hero-card-back" src="https://m.media-amazon.com/images/I/41Scm4PVspL._SY445_SX342_ML2_.jpg" alt="" decoding="async" />
-          <img class="hero-card hero-card-front" src="https://www.crisol.com.pe/media/catalog/product/9/7/9786124404245_ed3i2k7w6kjxj48o.jpg?width=700&amp;height=1050&amp;store=default&amp;image-type=image" alt="" decoding="async" />
-          <span class="hero-caption">Una página, una nueva perspectiva.</span>
-        </div>
+        <svg class="hero-illustration" viewBox="0 0 360 260" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hero-reader-title">
+          <title id="hero-reader-title">Persona sentada leyendo un libro</title>
+          <ellipse cx="188" cy="138" rx="112" ry="102" fill="var(--reader-backdrop)" />
+          <g stroke="var(--reader-ink)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M65 233h245" stroke="var(--line)" />
+            <!-- Sillón y patas. -->
+            <path d="m124 191-8 42m67-42 8 42" />
+            <path d="M118 110h26a19 19 0 0 1 19 19v29h38a14 14 0 0 1 14 14v20h-97a13 13 0 0 1-13-13v-56a13 13 0 0 1 13-13Z" fill="var(--reader-chair)" />
+            <path d="M105 164h39a13 13 0 0 1 13 13v15m-38-63v31" stroke="var(--reader-detail)" />
+            <!-- Piernas y zapatos. -->
+            <path d="M160 153h35l41 17a15 15 0 0 1 9 16l-8 36h-22l3-34-45-10a18 18 0 0 1-13-25Z" fill="var(--reader-pants)" />
+            <path d="m174 178 20 17-7 27h-21l7-34" fill="var(--reader-pants)" />
+            <path d="M165 220h23l6 8a3 3 0 0 1-2 5h-36v-6l9-7Zm49 0h23l12 8a3 3 0 0 1-2 5h-35Z" fill="var(--reader-paper)" />
+            <!-- Cuello, camisa y cabeza. -->
+            <path d="m180 76-3 22 23 8 3-25" fill="var(--reader-skin)" />
+            <path d="M177 95c-16 1-26 12-28 29l-4 32c18 11 40 12 62 3l-1-40c-1-12-8-20-18-23Z" fill="var(--reader-shirt)" />
+            <path d="M176 57c0-17 11-27 25-23 15 4 20 17 16 30l5 10-8 3c-4 12-13 17-23 12-12-5-17-17-15-32Z" fill="var(--reader-skin)" />
+            <path d="M177 73c-12-10-15-27-4-38 9-9 24-11 34-5 8 4 12 11 12 20-8 2-18-1-25-7 0 12-4 19-12 21Z" fill="var(--reader-ink)" />
+            <path d="m205 62 4 2m-8 17 7 1" />
+            <!-- Libro abierto y manos. -->
+            <path d="m194 119 31 9 35-13-13 40-29 11-31-13Z" fill="var(--reader-shirt)" />
+            <path d="m199 113 27 10 31-14-12 39-27 12-26-12Z" fill="var(--reader-paper)" />
+            <path d="m226 123-8 37m-14-36 13 5m-16 4 13 5m18-10 15-7m-18 16 15-7" stroke="var(--reader-detail)" />
+            <path d="M166 121c-3 9-3 17 3 22l19 10 8-12-17-10" fill="var(--reader-shirt)" />
+            <path d="m188 139 8-2 7 5-5 12-10-1-4-6Zm50 6 7-5 6 2-3 12-10 3-4-5Z" fill="var(--reader-skin)" />
+          </g>
+        </svg>
       </section>
 
       <section class="library shell" id="catalogo" aria-labelledby="library-title" tabindex="-1">
         <div class="section-heading">
-          <div>
-            <p class="eyebrow">La colección</p>
-            <h2 id="library-title">Elige tu próxima lectura</h2>
-          </div>
-          <p class="library-count" id="library-count" role="status" aria-live="polite" aria-atomic="true">Cargando libros...</p>
+          <h2 id="library-title">Biblioteca</h2>
+          <p class="library-count" id="library-count" role="status">Cargando libros...</p>
         </div>
         <div class="category-filters" id="category-filters" role="group" aria-label="Filtrar libros por tema">
           <button class="filter-button" type="button" data-category="todos" aria-pressed="true" aria-controls="books-grid" disabled>Todos</button>
@@ -88,15 +88,20 @@
           <button class="filter-button" type="button" data-category="tecnologia" aria-pressed="false" aria-controls="books-grid" disabled>Tecnología</button>
         </div>
         <div class="books-grid" id="books-grid" aria-busy="true">
-          <div class="loading-state">Preparando tu biblioteca<span class="loading-dots">...</span></div>
+          <div class="loading-state">Cargando libros...</div>
         </div>
-        <p class="library-note">Cada portada abre una fuente externa en una pestaña nueva. La colección incluye libros, extractos y resúmenes.</p>
+        <noscript><p>Activa JavaScript para ver la biblioteca y filtrar los libros por tema.</p></noscript>
+        <p class="library-note">Libros, extractos y resúmenes. Los enlaces se abren en una pestaña nueva.</p>
       </section>
     </main>
 
     <footer class="site-footer shell">
-      <span>BooksDimex<span class="brand-accent">.</span></span>
-      <span>Una página, una buena idea.</span>
+      <span>OrnitorCode Foundation</span>
+      <span class="footer-copyright">© 2026</span>
+      <a class="footer-home" href="#inicio">
+        <img src="assets/ornitorrinco-fondo-salvia.png" alt="" width="16" height="16" />
+        Volver al inicio
+      </a>
     </footer>
 
     <script src="app.js" defer></script>

@@ -5,17 +5,12 @@ const categoryFilters = document.querySelector("#category-filters");
 let allBooks = [];
 let activeCategory = "todos";
 
-const bookIcon = `
-  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <path d="M5.5 5.5A2.5 2.5 0 0 1 8 3h10.5v16H8a2.5 2.5 0 0 0-2.5 2.5v-16Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-    <path d="M5.5 5.5A2.5 2.5 0 0 1 8 8h10.5M5.5 21.5A2.5 2.5 0 0 1 8 19h10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`;
-
 function updateThemeButton() {
   const isDark = document.documentElement.dataset.theme === "dark";
+  const label = isDark ? "Modo claro" : "Modo oscuro";
+  themeToggle.textContent = label;
+  themeToggle.setAttribute("aria-label", `Cambiar a ${label.toLowerCase()}`);
   themeToggle.setAttribute("aria-pressed", String(isDark));
-  themeToggle.setAttribute("aria-label", isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
-  themeToggle.querySelector(".theme-label").textContent = isDark ? "Modo claro" : "Modo oscuro";
 }
 
 themeToggle.addEventListener("click", () => {
@@ -24,6 +19,12 @@ themeToggle.addEventListener("click", () => {
   try { localStorage.setItem("booksDimex-theme", nextTheme); } catch {}
   updateThemeButton();
 });
+
+const bookIcon = `
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M5.5 5.5A2.5 2.5 0 0 1 8 3h10.5v16H8a2.5 2.5 0 0 0-2.5 2.5v-16Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M5.5 5.5A2.5 2.5 0 0 1 8 8h10.5M5.5 21.5A2.5 2.5 0 0 1 8 19h10.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
 
 function escapeHtml(value = "") {
   return value.replace(/[&<>'"]/g, (character) => ({
@@ -34,7 +35,7 @@ function escapeHtml(value = "") {
 function renderBooks(books) {
   const categoryLabel = categoryFilters.querySelector('[aria-pressed="true"]').textContent;
   libraryCount.textContent = activeCategory === "todos"
-    ? `${books.length} ${books.length === 1 ? "libro" : "libros"} para explorar`
+    ? `${books.length} ${books.length === 1 ? "libro" : "libros"}`
     : `${books.length} de ${allBooks.length} libros · ${categoryLabel}`;
   if (!books.length) {
     booksGrid.innerHTML = `<p class="empty-state">Todavía no hay libros en este tema. Explora los demás filtros.</p>`;
@@ -80,7 +81,7 @@ categoryFilters.addEventListener("click", (event) => {
 async function loadBooks() {
   booksGrid.setAttribute("aria-busy", "true");
   libraryCount.textContent = "Cargando libros...";
-  booksGrid.innerHTML = `<div class="loading-state">Preparando tu biblioteca<span class="loading-dots">...</span></div>`;
+  booksGrid.innerHTML = `<div class="loading-state">Cargando libros...</div>`;
   categoryFilters.querySelectorAll("button").forEach((button) => { button.disabled = true; });
   try {
     const response = await fetch("data/books.json");
