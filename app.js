@@ -54,6 +54,10 @@ function renderBooks(books) {
         <div class="book-content">
           <h3 class="book-title">${escapeHtml(book.titulo)}</h3>
           <p class="book-author">${escapeHtml(book.autor)}</p>
+          <div class="book-access">
+            <span class="book-read">${bookIcon}Leer</span>
+            <span class="book-resource">${escapeHtml(resource)}</span>
+          </div>
         </div>
       </a>`;
   }).join("");

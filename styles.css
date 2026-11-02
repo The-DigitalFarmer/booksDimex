@@ -12,14 +12,14 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --bg: #080808;
-  --surface: #232623;
-  --text: #f0eee8;
-  --muted: #b8b5ad;
-  --line: #42453e;
+  --bg: #141311;
+  --surface: #1d1b17;
+  --text: #ebe7df;
+  --muted: #a39d90;
+  --line: #39362f;
   --accent: #efa082;
   --on-accent: #241a15;
-  --cover-bg: #171a18;
+  --cover-bg: #201e19;
 }
 
 * { box-sizing: border-box; }
@@ -84,9 +84,8 @@ a:focus-visible, button:focus-visible, .library:focus-visible {
 .catalog-link { padding-block: 10px; color: var(--muted); font-size: 0.875rem; }
 .catalog-link:hover, .site-footer a:hover { text-decoration: underline; text-underline-offset: 4px; }
 .theme-toggle, .filter-button, .retry-button {
-  min-height: 44px;
   border: 1px solid var(--line);
-  border-radius: 4px;
+  border-radius: 20px;
 }
 .theme-toggle:hover, .filter-button:hover, .retry-button:hover { border-color: var(--accent); }
 .theme-toggle {
@@ -122,7 +121,7 @@ a:focus-visible, button:focus-visible, .library:focus-visible {
   --reader-paper: #ded9d1;
   --reader-chair: #b8b5ad;
   --reader-detail: #8c877f;
-  --reader-backdrop: #42453e;
+  --reader-backdrop: #39362f;
 }
 h1, h2, h3 { margin: 0; }
 h1 {
@@ -166,7 +165,7 @@ h2 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; }
   color: var(--on-accent);
 }
 .books-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px 24px; }
-.book-card { display: flex; min-width: 0; flex-direction: column; border-radius: 2px; }
+.book-card { display: flex; min-width: 0; flex-direction: column; border-radius: 3px 10px 6px 3px; }
 .book-card:is(:hover, :focus-visible) {
   --cover-bg: var(--surface);
   background: var(--surface);
@@ -174,13 +173,23 @@ h2 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; }
 .book-cover {
   position: relative;
   display: grid;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 2 / 3;
   place-items: center;
   overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: 3px;
+  border-radius: 3px 10px 10px 3px;
   background: var(--cover-bg);
+  box-shadow: 0 4px 12px #0000001a;
 }
+.book-cover::before, .book-cover::after {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  content: "";
+  pointer-events: none;
+}
+.book-cover::before { left: 0; width: 7px; background: #00000026; }
+.book-cover::after { left: 7px; width: 1px; background: #ffffff26; }
 .cover-placeholder {
   display: flex;
   flex-direction: column;
@@ -197,14 +206,29 @@ h2 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; }
   inset: 0;
   width: 100%;
   height: 100%;
-  padding: 20px;
   object-fit: contain;
   background: var(--cover-bg);
 }
-.book-content { padding-top: 12px; }
+.book-content { display: flex; flex: 1; flex-direction: column; padding: 14px 0 0; }
 .book-title { font-size: 0.9375rem; font-weight: 600; line-height: 1.45; overflow-wrap: anywhere; }
 .book-card:hover .book-title { text-decoration: underline; text-underline-offset: 3px; }
 .book-author { margin: 4px 0 0; color: var(--muted); font-size: 0.8125rem; line-height: 1.5; }
+.book-access { display: flex; align-items: center; gap: 10px; padding-top: 12px; margin-top: auto; }
+.book-read {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.book-read svg { width: 16px; height: 16px; }
+.book-resource { min-width: 0; color: var(--muted); font-size: 0.6875rem; line-height: 1.4; }
+.book-card:is(:hover, :focus-visible) .book-read { background: var(--accent); color: var(--on-accent); }
 .loading-state, .error-state, .empty-state {
   grid-column: 1 / -1;
   margin: 0;
@@ -251,7 +275,6 @@ h2 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; }
   .library-count { max-width: 55%; }
   .category-filters { gap: 8px; margin-bottom: 24px; }
   .filter-button { padding-inline: 12px; }
-  .book-cover img { padding: 12px; }
   .book-title { font-size: 0.875rem; }
   .book-author { font-size: 0.75rem; }
   .library { padding-bottom: 36px; }
@@ -263,5 +286,4 @@ h2 { font-size: 1.125rem; font-weight: 600; letter-spacing: -0.02em; }
 @media (max-width: 359px) {
   .shell, .site-header { width: calc(100% - 32px); }
   .books-grid { grid-template-columns: minmax(0, 1fr); }
-  .book-cover { aspect-ratio: 1; }
 }
